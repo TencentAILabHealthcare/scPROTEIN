@@ -18,6 +18,22 @@ For more information, please refer to [https://www.biorxiv.org/content/10.1101/2
 
 
 
+## Input single-cell proteomic data format
+
+A csv file in the following format is needed for scPROTEIN learning from stage 1:
+
+Protein  |Peptide                |Cell 0          |Cell 1          |Cell 2          |Cell 3          |Cell 4          |Cell 5          |Cell 6
+---------|-----------------------|----------------|----------------|----------------|----------------|----------------|----------------|----------------
+P08865	 |LLVVTDPR_2	           |0.215943903	    |1.825849332	   |0.17106779	    |0.090752671	   |0.633329732	    |-0.044091136    |NA
+P26447	 |RTDEAAFQK_3	           |1.873431237	    |1.425136257	   |2.354956659    	|1.373487482	   |1.724188343	    |0.828024968	   |0.511722654	
+P26447	 |LNKSELK_3	             |NA	            |NA	             |NA	            |NA	             |NA	            |-0.164518259	   |-0.765802428
+Q00610	 |LLYNNVSNFGR_2	         |-0.452033525	  |NA	             |NA	            |-0.211513228	   |-0.573607252	  |-0.593867542    |NA
+P05120	 |LNGLYPFR_2	           |NA	            |NA	             |0.245379509	    |0.923845132	   |0.300612918	    |NA	             |NA
+
+
+
+"Protein" represents the protein name and "Peptide" denotes the corresponding constituting peptide sequence(s). The columns "Cell 0","Cell 1"... are the protein data in each cell. NA is the missing value. If datasets are provided directly from protein-level (without "Peptide" column), scPROTEIN can start from stage 2.
+
 
 ## Usage
 
@@ -69,7 +85,10 @@ python visualization.py
 
 After running the "visualization.py", a TSNE plot showing the cluster result will be saved in folder './scPROTEIN/' and an evaluation metric table will be displayed. Taking the demo SCoPE2_Specht dataset as a example, the expected TSNE plot output is:
 
-and the expected metric table result is:
+![](https://github.com/TencentAILabHealthcare/scPROTEIN/blob/main/TSNE_result.jpg)
+
+
+and the expected metric table result is like:
 
 ARI  |ASW  |NMI  |PS 
 -----|-----|-----|-----
