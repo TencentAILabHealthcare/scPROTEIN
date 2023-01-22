@@ -25,6 +25,7 @@ Recomended usage procedure is as follows.
 
 
 1. Installation
+(This usually takes 5 seconds on a normal desktop computer)
 ```
 git clone https://github.com/TencentAILabHealthcare/scPROTEIN.git
 cd scPROTEIN/
@@ -62,6 +63,36 @@ Afger stage 2, the learned cell embedding "scPROTEIN_embedding.npy" will be save
 python visualization.py
 ```
 
+
+
+## Expected output
+
+After running the "visualization.py", a TSNE plot showing the cluster result will be saved in folder './scPROTEIN/' and an evaluation metric table will be displayed. Taking the demo SCoPE2_Specht dataset as a example, the expected TSNE plot output is:
+
+and the expected metric table result is:
+
+ARI  |ASW  |NMI  |PS 
+-----|-----|-----|-----
+0.387|0.625|0.389|0.811
+
+## Hyperparameters
+
+
+Hyperparameter       |Description                     | Default 
+---------------------|--------------------------------| -------
+stage1               |If scPROTEIN starts from stage1 | True
+num_hidden           |Hidden dimension                | 256  
+num_proj_hidden      |Dimension of projection head    | 256
+num_layers           |Number of GCN layers            | 2
+num_protos           |Number of prototypes            | 2
+num_changed_edges    |Number of added/removed edges   | 50
+drop_edge_rate_1     |Dropedge rate for view1         | 0.2
+drop_edge_rate_2     |Dropedge rate for view2         | 0.4
+drop_feature_rate_1  |Mask_feature rate for view1     | 0.4
+drop_feature_rate_2  |Mask_feature rate for view1     | 0.2
+alpha                |Balance factor                  | 0.05
+tau                  |Temperature coefficient         | 0.4
+threshold            |Threshold of graph construct    | 0.15
 
 
 ## Software Requirements
