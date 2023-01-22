@@ -36,7 +36,7 @@ parser.add_argument("--max_pool_size", type=int, default=1, help='max pooling si
 parser.add_argument("--conv_layers", type=int, default=3, help='layer nums of conv.')
 parser.add_argument("--hidden_dim", type=int, default=3000, help='hidden dim for fc layer.')
 parser.add_argument("--num_cells", type=int, default=1490, help='input cell numbers.')
-parser.add_argument("--num_epochs", type=int, default=2, help='number of epochs.')
+parser.add_argument("--num_epochs", type=int, default=100, help='number of epochs.')
 parser.add_argument("--seed", type=int, default=3047, help='random seed.')
 parser.add_argument("--patience", type=int, default=15, help='hidden dimension.')
 parser.add_argument("--split_percentage", type=float, default=0.8, help='split.')
