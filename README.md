@@ -96,6 +96,19 @@ ARI  |ASW  |NMI  |PS
 
 ## Hyperparameters
 
+Hyperparameters for stage 1:
+
+Hyperparameter       |Description                     | Default 
+---------------------|--------------------------------| -------
+batch_size           |Batch_size                      |256  
+kernel_nums          |Kernel num of each conv block   |[300,200,100]
+kernel_size          |Kernel size of each conv block  |[2,2,2]
+max_pool_size        |Max pooling size                |1
+conv_layers          |Nums of conv layers             |3
+hidden_dim           |Hidden dim for fc layer         |3000
+
+
+Hyperparameters for stage 2:
 
 Hyperparameter       |Description                     | Default 
 ---------------------|--------------------------------| -------
@@ -125,6 +138,10 @@ threshold            |Threshold of graph construct    | 0.15
 - scikit-learn >= 1.1.1
 - scipy >= 1.8.1
 
+
+## Time cost
+
+Taking demo SCoPE2_Specht data (1490 cells, 3042 proteins) as an example, typical running time on a "normal" desktop computer is about 40 minutes for stage 1 and about 10 minutes for stage 2.
 
 
 ## Disclaimer
