@@ -2,20 +2,15 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
-<<<<<<< HEAD
-=======
 from torch_geometric.utils import dropout_adj
 from prototype_loss import *
 from sklearn.cluster import KMeans
 from utils import *
->>>>>>> 25c3e05 (update_scprotein)
 
 '''
 part of code is borrowed from https://github.com/CRIPAC-DIG/GRACE
 '''
 
-<<<<<<< HEAD
-=======
 
 # mask feature function
 def drop_feature(x, drop_prob):
@@ -28,7 +23,6 @@ def drop_feature(x, drop_prob):
 
     return x
 
->>>>>>> 25c3e05 (update_scprotein)
 # GCN encoder
 class Encoder(torch.nn.Module):
     def __init__(self, in_channels: int, out_channels: int, activation,
@@ -48,13 +42,9 @@ class Encoder(torch.nn.Module):
 
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor):
         for i in range(self.k):
-<<<<<<< HEAD
-            x = self.activation(self.conv[i](x, edge_index))
-=======
             # print(self.conv[i](x, edge_index))
             x = self.activation(self.conv[i](x, edge_index))
             # print(x)
->>>>>>> 25c3e05 (update_scprotein)
         return x
 
 
@@ -132,18 +122,6 @@ class Model(torch.nn.Module):
         return ret
 
 
-<<<<<<< HEAD
-# mask feature function
-def drop_feature(x, drop_prob):
-    drop_mask = torch.empty(
-        (x.size(1), ),
-        dtype=torch.float32,
-        device=x.device).uniform_(0, 1) < drop_prob
-    x = x.clone()
-    x[:, drop_mask] = 0
-
-    return x
-=======
 
 class scPROTEIN_learning(torch.nn.Module):
 
@@ -278,4 +256,3 @@ class scPROTEIN_learning(torch.nn.Module):
 
 
 
->>>>>>> 25c3e05 (update_scprotein)

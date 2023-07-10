@@ -1,14 +1,9 @@
 import torch
 import torch.nn as nn
-<<<<<<< HEAD
-
-
-=======
 from peptide_uncertainty_utils import *
 import random
 import torch.utils.data as Data
 from multi_task_heteroscedastic_regression_loss import regression_loss
->>>>>>> 25c3e05 (update_scprotein)
 
 class peptide_CNN(nn.Module):
     def __init__(self, num_amino_acid, max_pool_size, hidden_dim, output_dim, conv_layers, dropout_rate, kernel_nums, kernel_size):
@@ -52,8 +47,6 @@ class peptide_CNN(nn.Module):
         x = self.fc1(x)
         x = self.fc2(x)
         return x
-<<<<<<< HEAD
-=======
 
 
 
@@ -120,4 +113,3 @@ class scPROTEIN_stage1_learning(nn.Module):
         uncertainty = np.exp(log_uncertainty)
         return uncertainty
         # np.save('peptide_uncertainty_tutorial.npy',uncertainty)
->>>>>>> 25c3e05 (update_scprotein)

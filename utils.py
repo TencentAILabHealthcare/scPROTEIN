@@ -5,15 +5,9 @@ import torch
 import torch.optim.lr_scheduler as lr_scheduler
 from torch_geometric.data import Data
 import scipy.sparse as sp
-<<<<<<< HEAD
-
-
-
-=======
 import random
 import scanpy as sc
 from operator import itemgetter
->>>>>>> 25c3e05 (update_scprotein)
 
 
 
@@ -25,21 +19,14 @@ def load_sc_proteomic_features(stage1):
 
         if os.path.exists('./peptide_uncertainty_estimation/peptide_uncertainty.npy'):
             peptide_uncertainty = np.load('./peptide_uncertainty_estimation/peptide_uncertainty.npy')
-<<<<<<< HEAD
-=======
 
->>>>>>> 25c3e05 (update_scprotein)
         else:
             # print('-----To start from stage 1, you have to run peptide_uncertainty.py in the folder peptide_uncertainty_estimation to obtain the estimated peptide uncertainty first-----')
             raise Exception('-----To start from stage 1, you have to run peptide_uncertainty.py in the folder peptide_uncertainty_estimation to obtain the estimated peptide uncertainty first-----')
 
         cell_list = feature_file.columns.tolist()[2:]
         feature_fill = feature_file.fillna(0.)
-<<<<<<< HEAD
-        proteins_all = list(set(feature_fill['protein']))
-=======
         proteins_all = list(pd.unique(feature_fill['protein']))
->>>>>>> 25c3e05 (update_scprotein)
         features_all = feature_fill.values[:,2:]
         weighted_protein_feature_all = []
 
@@ -67,11 +54,6 @@ def load_sc_proteomic_features(stage1):
         proteins_all = list(features.index)
         features = np.array(features.values)
 
-<<<<<<< HEAD
-    return proteins_all, cell_list, features
-
-
-=======
     return proteins_all, cell_list, features.T
 
 
@@ -93,7 +75,6 @@ def graph_generation(features, threshold, feature_preprocess):
 
     data = Data(x=features, edge_index=edge_index)
     return data
->>>>>>> 25c3e05 (update_scprotein)
 
 
 def preprocess_graph(adj):
@@ -117,17 +98,11 @@ def sparse_to_tuple(sparse_mx):
 
 
 def load_cell_type_labels():
-<<<<<<< HEAD
-    cell_type_file = pd.read_csv('./scope2/Cells.csv')
-=======
     cell_type_file = pd.read_csv('./data/Cells.csv')
->>>>>>> 25c3e05 (update_scprotein)
     labels = list(cell_type_file.iloc[0,1:].values)
     return labels
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -190,7 +165,6 @@ def setup_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
 
 
->>>>>>> 25c3e05 (update_scprotein)
 def preprocess_features(features):
     """Row-normalize feature matrix and convert to tuple representation"""
     rowsum = np.array(features.sum(1))
@@ -200,8 +174,3 @@ def preprocess_features(features):
     features = r_mat_inv.dot(features)
     return features.todense(), sparse_to_tuple(features)
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 25c3e05 (update_scprotein)
