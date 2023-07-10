@@ -17,6 +17,7 @@ import warnings
 
 
 warnings.filterwarnings("ignore")
+<<<<<<< HEAD
 
 
 
@@ -25,6 +26,9 @@ def load_cell_type_labels():
     labels = list(cell_type_file.iloc[0,1:].values)
     return labels
 
+=======
+seed = 1
+>>>>>>> 25c3e05 (update_scprotein)
 
 def purity_score(y_true, y_pred):
     contingency_matrix1 = contingency_matrix(y_true, y_pred)
@@ -38,6 +42,7 @@ def dimension_reduce(embedding):
 
 
 
+<<<<<<< HEAD
 seed = 0
 
 # load ground truth cell label
@@ -48,13 +53,41 @@ Y_label = np.array(itemgetter(*list(Y_cell_type_label))(label_dict))
 
 # load learned cell embedding
 X_fea = np.load('scPROTEIN_embedding.npy')
+=======
+# load ground truth cell label
+Y_cell_type_label = load_cell_type_labels()
+label_dict = {'sc_m0':0, 'sc_u':1}
+target_names = ['Macrophage','Monocyte']
+Y_label = np.array(itemgetter(*list(Y_cell_type_label))(label_dict))
+
+
+
+# load learned cell embedding
+X_fea = np.load('scPROTEIN_embedding.npy')
+print(X_fea.shape)
+
+
+k_means = KMeans(n_clusters=len(target_names))
+y_predict = k_means.fit_predict(X_fea)
+df_result = pd.DataFrame()
+df_result['ARI'] = [np.round(adjusted_rand_score(Y_label,y_predict),3)]
+df_result['ASW'] = [np.round(silhouette_score(X_fea,y_predict),3)]
+df_result['NMI'] = [np.round(normalized_mutual_info_score(Y_label,y_predict),3)]
+df_result['PS'] = [np.round(purity_score(Y_label,y_predict),3)]
+print(df_result)
+
+
+>>>>>>> 25c3e05 (update_scprotein)
 X_trans_learned = dimension_reduce(X_fea)
 
 
 
 # plot
 colors = [plt.cm.Set2(2), plt.cm.Set2(1)]
+<<<<<<< HEAD
 target_names = ['Macrophage','Monocyte']
+=======
+>>>>>>> 25c3e05 (update_scprotein)
 fig = plt.figure(figsize=(5,5))
 for i in range(len(target_names)):
     plt.scatter(X_trans_learned[Y_label == i, 0]  
@@ -68,6 +101,7 @@ plt.ylabel('TSNE 2')
 plt.xticks([])
 plt.yticks([])
 plt.title('scPROTEIN') 
+<<<<<<< HEAD
 
 
 plt.savefig('TSNE_result.jpg', bbox_inches='tight',dpi=300)   
@@ -81,3 +115,7 @@ df_result['PS'] = [np.round(purity_score(Y_label,y_predict),3)]
 
 
 print(df_result)
+=======
+plt.savefig('TSNE_result.jpg', bbox_inches='tight',dpi=300)   
+
+>>>>>>> 25c3e05 (update_scprotein)

@@ -5,9 +5,15 @@ import torch
 import torch.optim.lr_scheduler as lr_scheduler
 from torch_geometric.data import Data
 import scipy.sparse as sp
+<<<<<<< HEAD
 
 
 
+=======
+import random
+import scanpy as sc
+from operator import itemgetter
+>>>>>>> 25c3e05 (update_scprotein)
 
 
 
@@ -19,13 +25,21 @@ def load_sc_proteomic_features(stage1):
 
         if os.path.exists('./peptide_uncertainty_estimation/peptide_uncertainty.npy'):
             peptide_uncertainty = np.load('./peptide_uncertainty_estimation/peptide_uncertainty.npy')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25c3e05 (update_scprotein)
         else:
             # print('-----To start from stage 1, you have to run peptide_uncertainty.py in the folder peptide_uncertainty_estimation to obtain the estimated peptide uncertainty first-----')
             raise Exception('-----To start from stage 1, you have to run peptide_uncertainty.py in the folder peptide_uncertainty_estimation to obtain the estimated peptide uncertainty first-----')
 
         cell_list = feature_file.columns.tolist()[2:]
         feature_fill = feature_file.fillna(0.)
+<<<<<<< HEAD
         proteins_all = list(set(feature_fill['protein']))
+=======
+        proteins_all = list(pd.unique(feature_fill['protein']))
+>>>>>>> 25c3e05 (update_scprotein)
         features_all = feature_fill.values[:,2:]
         weighted_protein_feature_all = []
 
@@ -53,9 +67,33 @@ def load_sc_proteomic_features(stage1):
         proteins_all = list(features.index)
         features = np.array(features.values)
 
+<<<<<<< HEAD
     return proteins_all, cell_list, features
 
 
+=======
+    return proteins_all, cell_list, features.T
+
+
+def graph_generation(features, threshold, feature_preprocess):
+    # take cell*protein matrix as input
+    # output cell*cell graph
+    features = features.astype(float)  
+    features_pd = pd.DataFrame(features.T)
+    adj = features_pd.corr()
+    adj_matrix = np.where(adj>threshold,1,0)
+
+    if feature_preprocess:
+        features = sp.coo_matrix(features)
+        features, _ = preprocess_features(features)
+
+    adj_matrix_sp = sp.coo_matrix(adj_matrix)
+    edge_index = torch.tensor(np.vstack((adj_matrix_sp.row, adj_matrix_sp.col)), dtype=torch.long)
+    features = torch.tensor(features,dtype=torch.float32)
+
+    data = Data(x=features, edge_index=edge_index)
+    return data
+>>>>>>> 25c3e05 (update_scprotein)
 
 
 def preprocess_graph(adj):
@@ -79,11 +117,80 @@ def sparse_to_tuple(sparse_mx):
 
 
 def load_cell_type_labels():
+<<<<<<< HEAD
     cell_type_file = pd.read_csv('./scope2/Cells.csv')
+=======
+    cell_type_file = pd.read_csv('./data/Cells.csv')
+>>>>>>> 25c3e05 (update_scprotein)
     labels = list(cell_type_file.iloc[0,1:].values)
     return labels
 
 
+<<<<<<< HEAD
+=======
+
+
+
+# load overlap protein data from two datasets
+def integrate_sc_proteomic_features(dataset1, dataset2):
+    
+    # load individual scp data
+    adata1 = sc.read_h5ad('./integration_dataset/{}.h5ad'.format(dataset1))
+    adata2 = sc.read_h5ad('./integration_dataset/{}.h5ad'.format(dataset2))
+    protein_data1, protein_data2 = adata1.X, adata2.X
+    protein_data1 = np.nan_to_num(protein_data1)
+    protein_data2 = np.nan_to_num(protein_data2)
+    cell_num1, cell_num2 = protein_data1.shape[0], protein_data2.shape[0]
+    proteins1, proteins2 = list(adata1.var_names),list(adata2.var_names)
+    
+    # define batch label and cell type labels for both two datasets
+    batch_label = np.concatenate((np.zeros(cell_num1),np.ones(cell_num2))).astype(int)
+    cell_type1,cell_type2 = list(adata1.obs['cell_type']), list(adata2.obs['cell_type'])
+    cell_type_with_dataname = cell_type1+cell_type2
+    
+    cell_type1 = [i.split('(')[0] for i in cell_type1]
+    cell_type2 = [i.split('(')[0] for i in cell_type2]
+    overlap_cell_type = list(set(cell_type1) & set(cell_type2))
+    print('overlap celltype:',overlap_cell_type)
+    
+    cell_type_all = cell_type1+cell_type2
+    cell_type_dic = dict(zip(set(cell_type_all), range(len(set(cell_type_all)))))
+    cell_type_label = np.array(itemgetter(*list(cell_type_all))(cell_type_dic))
+    overlap_cell_type_label = [cell_type_dic[i] for i in overlap_cell_type]
+    
+    
+    # search overlap protein from both two datasets
+    proteins1_pd,proteins2_pd = pd.DataFrame(proteins1,columns=['protein_name']),pd.DataFrame(proteins2,columns=['protein_name'])
+    overlap_protein = pd.merge(proteins1_pd, proteins2_pd, on=['protein_name'])
+    overlap_protein = list(overlap_protein['protein_name'])
+    print('overlap protein nums:',len(overlap_protein))
+                           
+
+    # construct overlap protein features
+    features_concat = np.zeros((cell_num1+cell_num2,len(overlap_protein)))
+    for i,protein in enumerate(overlap_protein):
+        index1 = proteins1.index(protein)
+        protein_data1_slice = protein_data1[:,index1]
+        index2 = proteins2.index(protein)
+        protein_data2_slice = protein_data2[:,index2]
+        protein_data_slice_concat = np.concatenate([protein_data1_slice,protein_data2_slice])
+        features_concat[:,i] = protein_data_slice_concat    
+    
+    return batch_label,cell_type_with_dataname,cell_type_label,overlap_cell_type_label, features_concat
+
+def setup_seed(seed):
+    #--- Fix random seed ---#
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.cuda.manual_seed(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False 
+    os.environ['PYTHONHASHSEED'] = str(seed)
+
+
+>>>>>>> 25c3e05 (update_scprotein)
 def preprocess_features(features):
     """Row-normalize feature matrix and convert to tuple representation"""
     rowsum = np.array(features.sum(1))
@@ -93,5 +200,8 @@ def preprocess_features(features):
     features = r_mat_inv.dot(features)
     return features.todense(), sparse_to_tuple(features)
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 25c3e05 (update_scprotein)
