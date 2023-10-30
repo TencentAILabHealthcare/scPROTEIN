@@ -57,8 +57,6 @@ if __name__ == '__main__':
         scPROTEIN_stage1 = scPROTEIN_stage1_learning(model, peptide_onehot_padding, Y_label,args.learning_rate, args.weight_decay, args.split_percentage, args.num_epochs, args.batch_size)
         scPROTEIN_stage1.train()
 
-    
-    
     scPROTEIN_stage1.uncertainty_generation()
 
     

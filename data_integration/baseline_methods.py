@@ -14,7 +14,6 @@ from utils import *
 from batch_visualization import *
 
 
-
 baseline = 'KNN-ComBat'  
 
 # load data

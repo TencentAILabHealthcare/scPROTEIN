@@ -18,8 +18,6 @@ from operator import itemgetter
 
 
 
-
-
 # load data
 def load_peptide(file_path):
 
@@ -35,7 +33,7 @@ def load_peptide(file_path):
     num_cells = len(cell_list)
     print('peptides nums in total:', len(peptides))
     print('cell nums:',num_cells)
-    return peptides, proteins, torch.FloatTensor(expression_data), cell_list,num_cells
+    return peptides, proteins, torch.HalfTensor(expression_data), cell_list,num_cells
 
 
 # extract peptide sequence
@@ -52,7 +50,6 @@ def extract_peptide_seq(peptides):
     return peptide_list,peptide_list_charge
 
 
-
 # # extract amino acid set
 # def extract_amino_acid_set(peptide_list):
 #     amino_acid_set = set()
@@ -65,7 +62,6 @@ def extract_peptide_seq(peptides):
 #             max_length = seq_length
 
 #     return list(amino_acid_set),max_length
-
 
 
 # one hot encoding
