@@ -15,8 +15,6 @@
 <br/>
 
 
-
-
 **load_peptide(data_path)**
 
 **- Function:**

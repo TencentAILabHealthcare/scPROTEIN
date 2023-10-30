@@ -54,7 +54,6 @@ The [documentation](./docs/documentaion.md) which elucidates the functions of sc
 
 
 
-
 ## Usage
 
 Recomended usage procedure is as follows. 

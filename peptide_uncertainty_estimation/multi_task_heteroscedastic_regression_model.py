@@ -5,6 +5,7 @@ import random
 import torch.utils.data as Data
 from multi_task_heteroscedastic_regression_loss import regression_loss
 
+
 class peptide_CNN(nn.Module):
     def __init__(self, num_amino_acid, max_pool_size, hidden_dim, output_dim, conv_layers, dropout_rate, kernel_nums, kernel_size):
         super(peptide_CNN,self).__init__()

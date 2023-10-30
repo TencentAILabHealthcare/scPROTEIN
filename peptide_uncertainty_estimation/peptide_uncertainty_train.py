@@ -7,8 +7,6 @@ import random
 import torch
 import numpy as np 
 import sys
-# from utils import *
-
 from multi_task_heteroscedastic_regression_model import *
 from peptide_uncertainty_utils import *
 

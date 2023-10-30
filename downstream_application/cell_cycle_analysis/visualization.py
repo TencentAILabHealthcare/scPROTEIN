@@ -10,11 +10,9 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
-
 from sklearn import metrics
 from sklearn.metrics import silhouette_score,adjusted_rand_score,normalized_mutual_info_score
 from sklearn.metrics.cluster import contingency_matrix
-
 import warnings
 
 

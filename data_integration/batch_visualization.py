@@ -99,7 +99,7 @@ def integration_visualization(cell_type_with_dataname,embedding):
             embedding[cell_type_with_dataname==cell_type,1],
             label = cell_type,
             s = 10,
-            c = color_dic[cell_type],
+            color = color_dic[cell_type],
             marker = marker_dic[cell_type.split('(')[0]]
         )
     plt.legend()  
