@@ -61,9 +61,7 @@ if __name__ == '__main__':
 
     
     
-
-    uncertainty = scPROTEIN_stage1.uncertainty_generation()
-    np.save('peptide_uncertainty_data.npy',uncertainty)
+    scPROTEIN_stage1.uncertainty_generation()
 
     
     

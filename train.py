@@ -69,5 +69,5 @@ if __name__ == '__main__':
     
 
     embedding = scPROTEIN.embedding_generation()
-    np.save('scPROTEIN_embedding.npy', embedding)
+    np.save('scprotein_embedding.npy', embedding)
     

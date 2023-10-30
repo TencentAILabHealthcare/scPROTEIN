@@ -49,6 +49,12 @@ P05120	 |LNGLYPFR_2	           |NA	            |NA	             |0.245379509	   
 
 
 
+## Documentation
+The [documentation](./docs/documentaion.md) which elucidates the functions of scPROTEIN is provided.
+
+
+
+
 ## Usage
 
 Recomended usage procedure is as follows. 
@@ -103,7 +109,7 @@ For datasets provided directly with the reconstructed protein-level profile, scP
 python3 train.py
 ```
 
-Afger stage 2, the learned cell embedding "scPROTEIN_embedding.npy" will be saved in folder './scPROTEIN/'
+Afger stage 2, the learned cell embedding will be saved in folder './scPROTEIN/'
 
 
 4.Evaluate the learned cell embeddings.
@@ -138,10 +144,7 @@ The following notebooks are provided to show how to run scPROTEIN model
 1. [tutorial_scPROTEIN_stage1](tutorial_scPROTEIN_stage1.ipynb) gives a detailed description for uncertainty estimation for scPROTEIN stage1.
 2. [tutorial_scPROTEIN_stage2](tutorial_scPROTEIN_stage2.ipynb) provides an example using protein-level data from stage1 to learn cell embedding in stage2.
 3. [data_integration](./data_integration/) shows the running process for data integration and batch correction across various MS acquisitions.
-4. [downstream_application](./downstream_application/) displays the analysis for clinical proteomic data and spatial proteomic data.
-
-
-
+4. [downstream_application](./downstream_application/) displays the analysis for clinical proteomic data, spatial proteomic data and cell cycle.
 
 
 ## Hyperparameters
@@ -188,17 +191,12 @@ This tool is for research purpose and not approved for clinical use.
 This is not an official Tencent product.
 
 
-## Coypright
-
-This tool is developed in Tencent AI Lab.
-
-The copyright holder for this project is Tencent AI Lab.
-
-All rights reserved.
+## Questions
+If you have a question about using scPROTEIN, you can post an [issue](https://github.com/TencentAILabHealthcare/scPROTEIN/issues) or reach us by email(nkuweili@mail.nankai.edu.cn, fionafyang@tencent.com).
 
 
 
 ## Citation
-Li, W., Yang, F. et al. A Versatile Deep Graph Contrastive Learning Framework for Single-cell Proteomics Embedding. https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1
+Li, W., Yang, F., et al. A Versatile Deep Graph Contrastive Learning Framework for Single-cell Proteomics Embedding. https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1
 
 

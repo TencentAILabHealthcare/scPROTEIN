@@ -80,8 +80,8 @@ class scPROTEIN_stage1_learning(nn.Module):
         num_cells = self.Y_label.shape[1]
         loader = self.transform_peptide_data_into_dataloader()
         criterion = nn.MSELoss() 
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate, weight_decay=self.weight_decay)
-        for epoch in range(self.num_epochs+1):
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate, weight_decay=self.weight_decay, eps=1e-3)
+        for epoch in range(self.num_epochs):
             self.model.train()
             loss_all = 100.
             for step, (batch_x, batch_y) in enumerate(loader):

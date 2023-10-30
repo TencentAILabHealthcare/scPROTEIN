@@ -65,7 +65,7 @@ for i in range(len(target_names)):
     plt.scatter(X_trans_learned[Y_label == i, 0]  
                 , X_trans_learned[Y_label == i, 1] 
                 , s = 10  
-                , c=colors[i]  
+                , color=colors[i]  
                 , label=target_names[i] 
                 )
 plt.xlabel('TSNE 1')
