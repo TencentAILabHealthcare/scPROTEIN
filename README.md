@@ -191,7 +191,8 @@ This is not an official Tencent product.
 
 
 ## Questions
-If you have a question about using scPROTEIN, you can post an [issue](https://github.com/TencentAILabHealthcare/scPROTEIN/issues) or reach us by email(nkuweili@mail.nankai.edu.cn, fionafyang@tencent.com).
+If you have any suggestions/ideas for scPROTEIN or have issues trying to use it, please don't hesitate to reach out to us.
+You can post an [issue](https://github.com/TencentAILabHealthcare/scPROTEIN/issues) or reach us by email(nkuweili@mail.nankai.edu.cn, fionafyang@tencent.com).
 
 
 
