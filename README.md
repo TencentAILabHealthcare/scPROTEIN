@@ -6,7 +6,7 @@
 
 
 ### A Versatile Deep Graph Contrastive Learning Framework for Single-cell Proteomics Embedding
-scPROTEIN (**s**ingle-**c**ell **PROT**eomics **E**mbedd**IN**g) is a deep contrastive learning framework for Single-cell Proteomics Embedding.
+scPROTEIN (**s**ingle-**c**ell **PROT**eomics **E**mbedd**IN**g) is a deep contrastive learning framework for single-cell proteomics embedding.
 
 
 The advance of single-cell proteomics sequencing technology sheds light on the research in revealing the protein-protein interactions, the post-translational modifications, and the proteoform dynamics of proteins in a cell. However, the uncertainty estimation for peptide quantification, data missingness, severe batch effects and high noise hinder the analysis of single-cell proteomic data. It is important to solve this set of tangled problems together, which existing methods tailored for single-cell transcriptome cannot fully address. Here, we proposed a novel versatile framework scPROTEIN, composed of peptide uncertainty estimation based on a multi-task heteroscedastic regression model and cell embedding learning based on graph contrastive learning designed for single-cell proteomic data analysis. scPROTEIN estimated the uncertainty of peptide quantification, denoised the protein data, removed batch effects and encoded single-cell proteomic-specific embeddings in a unified framework. We demonstrate that our method is efficient for cell clustering, batch correction, cell-type annotation and clinical analysis. Furthermore, our method can also be plugged into single-cell resolved spatial proteomic data, laying the foundation for encoding spatial proteomic data for tumor microenvironment analysis.
@@ -50,7 +50,7 @@ P05120	 |LNGLYPFR_2	           |NA	            |NA	             |0.245379509	   
 
 
 ## Documentation
-The [documentation](./docs/documentaion.md) which elucidates the functions of scPROTEIN is provided.
+The [documentation](./docs/documentation.md) which elucidates the functions of scPROTEIN is provided.
 
 
 
@@ -78,40 +78,62 @@ docker run --name scprotein --gpus all -it --rm nkuweili/scprotein:latest /bin/b
 
 
 - Download this repository
-(This usually takes 10 seconds on a normal desktop computer)
+(This usually takes 15 seconds on a normal desktop computer)
+
 ```
 git clone https://github.com/TencentAILabHealthcare/scPROTEIN.git
 cd scPROTEIN/
 ```
+After downloading this repository, all the single-cell proteomics datasets used in our study will also be included together. We provided these datasets in both *.csv* and *.h5ad* formats.
 
 
-2.For datasets provided with raw peptide-level profile, scPROTEIN starts from stage 1 to learn the peptide uncertainty and obtain the protein-level abundance in an uncertainty-guided manner. 
+
+2.Setup of scPROTEIN python package
+
+We provided scPROTEIN package hosted on `pypi` and can be installed via `pip`. 
+
 
 ```
-cd peptide_uncertainty_estimation/
-python3 peptide_uncertainty_train.py
+pip install scprotein 
 ```
 
-After stage 1, the learned estimated peptide uncertainty array will be saved in folder './scPROTEIN/peptide_uncertainty_estimation'
-
-
-3.Run stage 2 to obtain the learned cell embeddings.
+If for some reason this doesn't work on your device, you can also directly install scPROTEIN with the [*.whl* file](./docs/scprotein-0.1.1-py3-none-any.whl).
 
 ```
-cd ..
-python3 train.py --stage1 True
+pip install docs/scprotein-0.1.1-py3-none-any.whl 
 ```
+
+You can check if scPROTEIN package has been successfully installed via the following command:
+```
+python3 -c "import scprotein"
+```
+
+
+3.For datasets provided with raw peptide-level profile, scPROTEIN starts from stage 1 to learn the peptide uncertainty and obtain the protein-level abundance in an uncertainty-guided manner. 
+
+```
+python3 train_stage1.py
+```
+
+After stage 1, the learned estimated peptide uncertainty array will be saved in folder './scPROTEIN'
+
+
+4.Run stage 2 to obtain the learned cell embeddings.
+```
+python3 train_stage2.py --stage1 True
+```
+
 
 For datasets provided directly with the reconstructed protein-level profile, scPROTEIN will start from stage2.
 
 ```
-python3 train.py
+python3 train_stage2.py
 ```
 
-Afger stage 2, the learned cell embedding will be saved in folder './scPROTEIN/'
+After stage 2, the learned cell embedding will be saved in folder './scPROTEIN/'
 
 
-4.Evaluate the learned cell embeddings.
+5.Evaluate the learned cell embeddings.
 ```
 python3 visualization.py
 ```
@@ -128,10 +150,8 @@ After running the "visualization.py", a TSNE plot showing the cluster result wil
 For loading [checkpoints](./trained_scPROTEIN/) for scPROTEIN stage1 and stage2 on SCoPE2_Specht dataset for generating uncertainty and cell embedding, respectively:
 
 ```
-cd peptide_uncertainty_estimation/
-python3 peptide_uncertainty_train.py --use_trained_scPROTEIN True
-cd ..
-python3 train.py --stage1 True --use_trained_scPROTEIN True
+python3 train_stage1.py --use_trained_scPROTEIN True
+python3 train_stage2.py --stage1 True --use_trained_scPROTEIN True
 python3 visualization.py
 ```
 
@@ -140,8 +160,8 @@ python3 visualization.py
 
 The following notebooks are provided to show how to run scPROTEIN model
 
-1. [tutorial_scPROTEIN_stage1](tutorial_scPROTEIN_stage1.ipynb) gives a detailed description for uncertainty estimation for scPROTEIN stage1.
-2. [tutorial_scPROTEIN_stage2](tutorial_scPROTEIN_stage2.ipynb) provides an example using protein-level data from stage1 to learn cell embedding in stage2.
+1. [tutorial_scPROTEIN_stage1](./docs/tutorial_scPROTEIN_stage1.ipynb) gives a detailed description for uncertainty estimation for scPROTEIN stage1.
+2. [tutorial_scPROTEIN_stage2](./docs/tutorial_scPROTEIN_stage2.ipynb) provides an example using protein-level data from stage1 to learn cell embedding in stage2.
 3. [data_integration](./data_integration/) shows the running process for data integration and batch correction across various MS acquisitions.
 4. [downstream_application](./downstream_application/) displays the analysis for clinical proteomic data, spatial proteomic data and cell cycle.
 
