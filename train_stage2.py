@@ -62,7 +62,7 @@ if __name__ == '__main__':
                     args.learning_rate, args.weight_decay, args.num_protos, args.topology_denoising, args.num_epochs, args.alpha, args.num_changed_edges,args.seed)
 
         scPROTEIN.train()
-        # torch.save(model, './pretrained_scPROTEIN/scPROTEIN_stage2.pt')
+        # torch.save(model, './trained_scPROTEIN/scPROTEIN_stage2.pt')
     
 
     embedding = scPROTEIN.embedding_generation()

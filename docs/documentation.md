@@ -9,13 +9,13 @@
 
 ## Setup
 
-Users can either employ the source code provided in the repository, or directly download the scPROTEIN package using pip:
+Users can directly download the scPROTEIN package using pip:
 
 ```
 pip install scprotein 
 ```
 
-If for some reason this doesn't work on your device, you can also install scPROTEIN with the [*.whl* file](./docs/scprotein-0.1.1-py3-none-any.whl)
+If for some reason this doesn't work on your device, you can also install scPROTEIN with the provided [*.whl* file](scprotein-0.1.1-py3-none-any.whl).
 
 ```
 pip install docs/scprotein-0.1.1-py3-none-any.whl 
@@ -23,7 +23,7 @@ pip install docs/scprotein-0.1.1-py3-none-any.whl
 
 You can check if scPROTEIN package has been successfully installed via the following command:
 ```
-import scprotein
+python3 -c "import scprotein"
 ```
 
 
@@ -33,7 +33,7 @@ import scprotein
 
 ### For *stage 1*
 
-Apart from using the provided source code, users can also utilize the functions of *stage1* from the scPROTEIN python package as:
+You can utilize the functions of *stage1* from the scPROTEIN python package as:
 
 ```
 # Incorporate all functions of stage1:
@@ -178,7 +178,7 @@ This function specifies whether to use *stage1* and loads the single-cell protei
 ### For *stage 2*
 
 
-Apart from using the provided source code, users can also utilize the functions of *stage2* from the fully-fledged scPROTEIN python package as:
+Users can utilize the functions of *stage2* from the fully-fledged scPROTEIN python package as:
 
 ```
 # Incorporate all functions of stage2:

@@ -1,9 +1,7 @@
 import argparse
 import random
 import sys
-sys.path.append("../../") 
-from utils import *
-from model import *
+from scprotein import *
 import numpy as np 
 import scipy.sparse as sp
 import os

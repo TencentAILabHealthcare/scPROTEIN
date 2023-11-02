@@ -1,8 +1,7 @@
 from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA  
 import sys
-sys.path.append("../../") 
-from utils import *
+from scprotein import *
 from operator import itemgetter
 import matplotlib.pyplot as plt
 import anndata as ad

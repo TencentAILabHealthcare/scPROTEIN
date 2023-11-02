@@ -63,13 +63,13 @@ Recomended usage procedure is as follows.
 
 The running environment of scPROTEIN can be installed from docker-hub repository: 
 
-- Pull the docker image from docker-hub
+- Pull the Docker image from docker-hub
 
 ```
 docker pull nkuweili/scprotein:latest
 ```
 
-- Run the docker image (GPU is needed)
+- Run the Docker image (GPU is needed)
 
 
 ```
@@ -84,26 +84,26 @@ docker run --name scprotein --gpus all -it --rm nkuweili/scprotein:latest /bin/b
 git clone https://github.com/TencentAILabHealthcare/scPROTEIN.git
 cd scPROTEIN/
 ```
-After downloading this repository, all the single-cell proteomics datasets used in our study will also be included together. We provided these datasets in both *.csv* and *.h5ad* formats.
+After downloading this repository, all the single-cell proteomics datasets used in our study will also be included. We provided these datasets in both *.csv* and *.h5ad* formats.
 
 
 
 2.Setup of scPROTEIN python package
 
-We provided scPROTEIN package hosted on `pypi` and can be installed via `pip`. 
+- We provided scPROTEIN package hosted on `PyPI` and can be installed via `pip`. 
 
 
 ```
 pip install scprotein 
 ```
 
-If for some reason this doesn't work on your device, you can also directly install scPROTEIN with the [*.whl* file](./docs/scprotein-0.1.1-py3-none-any.whl).
+- If for some reason this doesn't work on your device, you can also directly install scPROTEIN with the provided [*.whl* file](./docs/scprotein-0.1.1-py3-none-any.whl).
 
 ```
 pip install docs/scprotein-0.1.1-py3-none-any.whl 
 ```
 
-You can check if scPROTEIN package has been successfully installed via the following command:
+- You can check if scPROTEIN package has been successfully installed via the following command:
 ```
 python3 -c "import scprotein"
 ```
@@ -130,7 +130,9 @@ For datasets provided directly with the reconstructed protein-level profile, scP
 python3 train_stage2.py
 ```
 
-After stage 2, the learned cell embedding will be saved in folder './scPROTEIN/'
+After stage 2, the learned cell embedding will be saved in folder './scPROTEIN/'.
+
+For data integration analysis, you can firstly use function [*integrate_sc_proteomic_features*](./docs/documentation.md) to load datasets. Subsequently, the process of running scPROTEIN to learn cell embedding is similar. You can refer to the tutorials in [data_integration](./data_integration/) for more details. 
 
 
 5.Evaluate the learned cell embeddings.
@@ -142,7 +144,7 @@ python3 visualization.py
 
 ## Expected output
 
-After running the "visualization.py", a TSNE plot showing the cluster result will be saved in folder './scPROTEIN/', and a corresponding evaluation metric table will be displayed.
+After running visualization.py, a TSNE plot showing the cluster result will be saved in folder './scPROTEIN/', and a corresponding evaluation metric table will be displayed.
 
 
 ## Use trained scPROTEIN model for evaluation
@@ -152,7 +154,6 @@ For loading [checkpoints](./trained_scPROTEIN/) for scPROTEIN stage1 and stage2 
 ```
 python3 train_stage1.py --use_trained_scPROTEIN True
 python3 train_stage2.py --stage1 True --use_trained_scPROTEIN True
-python3 visualization.py
 ```
 
 
