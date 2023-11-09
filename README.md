@@ -9,7 +9,8 @@
 scPROTEIN (**s**ingle-**c**ell **PROT**eomics **E**mbedd**IN**g) is a deep contrastive learning framework for single-cell proteomics embedding.
 
 
-The advance of single-cell proteomics sequencing technology sheds light on the research in revealing the protein-protein interactions, the post-translational modifications, and the proteoform dynamics of proteins in a cell. However, the uncertainty estimation for peptide quantification, data missingness, severe batch effects and high noise hinder the analysis of single-cell proteomic data. It is important to solve this set of tangled problems together, which existing methods tailored for single-cell transcriptome cannot fully address. Here, we proposed a novel versatile framework scPROTEIN, composed of peptide uncertainty estimation based on a multi-task heteroscedastic regression model and cell embedding learning based on graph contrastive learning designed for single-cell proteomic data analysis. scPROTEIN estimated the uncertainty of peptide quantification, denoised the protein data, removed batch effects and encoded single-cell proteomic-specific embeddings in a unified framework. We demonstrate that our method is efficient for cell clustering, batch correction, cell-type annotation and clinical analysis. Furthermore, our method can also be plugged into single-cell resolved spatial proteomic data, laying the foundation for encoding spatial proteomic data for tumor microenvironment analysis.
+
+The advance of single-cell proteomics sequencing technology sheds light on the research in revealing the protein-protein interactions, posttranslational modifications, and proteoform dynamics of proteins in a cell. However, the uncertainty estimation for peptide quantification, data missingness, batch effects and high noise hinder the analysis of single-cell proteomic data. It is important to solve this set of tangled problems together, but the existing methods tailored for single-cell transcriptomes cannot fully address this task. Here, we proposed a novel versatile framework designed for single-cell proteomics data analysis called scPROTEIN, which consists of peptide uncertainty estimation based on a multi-task heteroscedastic regression model and cell embedding learning based on graph contrastive learning. scPROTEIN can estimate the uncertainty of peptide quantification, denoise protein data, remove batch effects and encode single-cell proteomic-specific embeddings in a unified framework. We demonstrate that our method is efficient for cell clustering, batch correction, cell type annotation and clinical analysis. Furthermore, our method can be plugged into single-cell resolved spatial proteomic data, laying the foundation for encoding spatial proteomic data for tumor microenvironment analysis.
 
 For more information, please refer to [https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1](https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1)
 
@@ -81,6 +82,9 @@ docker run --name scprotein --gpus all -it --rm nkuweili/scprotein:latest /bin/b
 (This usually takes 15 seconds on a normal desktop computer)
 
 ```
+# If you encounter issue about proxy when running "git clone" in the Docker environment on your own device, you can first execute the following command before running "git clone":
+# git config --global http.proxy ""
+
 git clone https://github.com/TencentAILabHealthcare/scPROTEIN.git
 cd scPROTEIN/
 ```
@@ -185,7 +189,7 @@ Hyperparameters for stage 2:
 
 Hyperparameter       |Description                     | Default 
 ---------------------|--------------------------------| -------
-stage1               |If scPROTEIN starts from stage1 | True
+stage1               |If scPROTEIN starts from stage1 | False
 num_hidden           |Hidden dimension                | 400  
 num_proj_hidden      |Dimension of projection head    | 256
 num_layers           |Number of GCN layers            | 2
