@@ -12,8 +12,7 @@ scPROTEIN (**s**ingle-**c**ell **PROT**eomics **E**mbedd**IN**g) is a deep contr
 
 The advance of single-cell proteomics sequencing technology sheds light on the research in revealing the protein-protein interactions, posttranslational modifications, and proteoform dynamics of proteins in a cell. However, the uncertainty estimation for peptide quantification, data missingness, batch effects and high noise hinder the analysis of single-cell proteomic data. It is important to solve this set of tangled problems together, but the existing methods tailored for single-cell transcriptomes cannot fully address this task. Here, we proposed a novel versatile framework designed for single-cell proteomics data analysis called scPROTEIN, which consists of peptide uncertainty estimation based on a multi-task heteroscedastic regression model and cell embedding generation based on graph contrastive learning. scPROTEIN can estimate the uncertainty of peptide quantification, denoise protein data, remove batch effects and encode single-cell proteomic-specific embeddings in a unified framework. We demonstrate that scPROTEIN is efficient for cell clustering, batch correction, cell type annotation, clinical analysis, and spatially resolved proteomic data exploration.
 
-For more information, please refer to [https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1](https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1)
-
+For more information, please refer to [https://www.nature.com/articles/s41592-024-02214-9](https://www.nature.com/articles/s41592-024-02214-9)
 
 
 <p align="center">
@@ -222,6 +221,5 @@ You can post an [issue](https://github.com/TencentAILabHealthcare/scPROTEIN/issu
 
 
 ## Citation
-Li, W., Yang, F., et al. A Versatile Deep Graph Contrastive Learning Framework for Single-cell Proteomics Embedding. https://www.biorxiv.org/content/10.1101/2022.12.14.520366v1
-
+Li W, Yang F, Wang F, et al. scPROTEIN: a versatile deep graph contrastive learning framework for single-cell proteomics embedding. Nature Methods, 2024, 21(4): 623-634.
 
